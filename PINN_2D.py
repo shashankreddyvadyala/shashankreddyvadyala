@@ -1,5 +1,5 @@
 """
-Author: Minglang Yin
+Author: Shashank Reddy Vadyala
     PINNs (physical-informed neural network) for solving time-dependent Allen-Cahn equation (2D).
     
     d(phi)/dt + div*(phi*u) = 1/Pe*(-F'(phi) + eps^2*lap(phi)) + beta(t)
