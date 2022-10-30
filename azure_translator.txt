@@ -1,0 +1,41 @@
+import azureml.core
+import uuid
+import requests
+from azureml.core import Dataset
+from azureml.core import Workspace
+keyvault = ws.get_default_keyvault()
+translation_access_key = keyvault.get_secret(name="cog-nc-rgd0003495-compintel-dev-access-key")
+
+
+
+endpoint = "https://api.cognitive.microsofttranslator.com"
+location = "northcentralus"
+path = '/translate'
+constructed_url = endpoint + path
+
+
+
+params = {
+    'api-version': '3.0',
+    'from': 'zh',
+    'to': 'en'
+}
+headers = {
+    'Ocp-Apim-Subscription-Key': translation_access_key,
+    'Ocp-Apim-Subscription-Region': location,
+    'Content-type': 'application/json',
+    'X-ClientTraceId': str(uuid.uuid4())
+}
+
+
+
+# You can pass more than one object in body.
+body = [{
+    'text': "双封端乙烯基聚二甲基硅氧烷 100-1000cst 欢迎致电洽谈"
+}]
+
+
+
+request = requests.post(constructed_url, params=params, headers=headers, json=body)
+response = request.json()
+print(response)
