@@ -1,2 +1,108 @@
 https://nbviewer.org/github/ethen8181/machine-learning/blob/master/time_series/1_exponential_smoothing.ipynb
 https://nbviewer.org/github/ethen8181/machine-learning/blob/master/deep_learning/word2vec/word2vec_detailed.ipynb
+
+
+[Background music playing softly]
+
+Narrator:
+"Hello and welcome to the user guide on connecting CHMiner to Jupyter Hub and establishing Amazon Redshift. Follow these easy steps to get started!"
+
+Step 1: Pre-requisites
+"Ensure you have CHMiner, Jupyter Hub, and an AWS account. If not, install and set them up before proceeding."
+
+Step 2: Open CHMiner
+"Open CHMiner on your system. Ensure it's up-to-date to avoid compatibility issues."
+
+Step 3: Jupyter Hub Connection
+"Now, it’s time to connect CHMiner to Jupyter Hub. Open Jupyter Hub, navigate to the 'Connect' or 'Add Server' option, and select 'CHMiner' from the list of available connections."
+
+Step 4: Login Credentials
+"Enter your login credentials for CHMiner. If you’re a new user, consider creating an account or seeking the required details from your system administrator."
+
+Step 5: AWS Redshift Configuration
+"With CHMiner now linked with Jupyter Hub, let’s shift focus to Amazon Redshift. Login to your AWS account, navigate to the AWS Management Console, and select 'Redshift'."
+
+Step 6: Cluster Creation
+"Click on ‘Launch Cluster’ to initiate a new cluster. Fill in the necessary details, including cluster identifier, database name, user name, and password. Remember, store these details as you’ll need them later."
+
+Step 7: Configuration
+"Configure the node type and number of nodes based on your requirements. AWS provides a variety of options to cater to different processing and storage needs."
+
+Step 8: Permissions and Security
+"Navigate to the security group settings. Edit inbound and outbound rules to allow traffic to and from your IP address."
+
+Step 9: Connecting to Jupyter Hub
+"Head back to Jupyter Hub, and use the JDBC URL from the Amazon Redshift Console to establish a connection. Enter the database name, username, and password you set earlier to authenticate the connection."
+
+Step 10: Test the Connection
+"Run a simple query to ensure that the connection has been established successfully. If you encounter any errors, retrace your steps to identify and rectify the issue."
+
+Closing:
+"You’ve successfully connected CHMiner to Jupyter Hub and established Amazon Redshift! Now, you can perform complex data analyses with ease. For further assistance, refer to the detailed user manuals or contact our support team."
+
+[Background music fades out]
+
+Note: Please replace "CHMiner" and any other placeholders with the actual names and steps that are applicable to the specific tools and platforms you're using. Ensure to adhere to the specific terminologies and procedures aligned with the actual tools and software for a more accurate guide.
+
+
+
+
+User
+igonre the aws redshift config and cluster creation and permission just make jupyter hub code snipt and explain
+ChatGPT
+Certainly! Here's a simplified version that focuses solely on connecting to Jupyter Hub and providing a code snippet for interaction, presuming that the Redshift cluster is already set up and ready to use.
+
+[Background music playing softly]
+
+Narrator:
+"Hello and welcome to the simplified user guide. Today, we’re focusing on connecting to your Redshift database using Jupyter Hub. Let’s dive in!"
+
+Step 1: Launch Jupyter Hub
+"Begin by opening your web browser and navigating to your Jupyter Hub instance. Login with your credentials to access the Jupyter Notebook interface."
+
+Step 2: Create a New Notebook
+"Once inside, create a new Python notebook. You can do this by clicking on the 'New' button and selecting 'Python 3' from the dropdown menu."
+
+Step 3: Install Required Packages
+"We will need the 'psycopg2' package to connect to Redshift. In a new cell, type and execute the following code to install it, if you haven't already."
+
+python
+Copy code
+!pip install psycopg2-binary
+"Wait for the installation to complete. The ‘psycopg2-binary’ package is a PostgreSQL adapter for Python and essential for our connection to Redshift."
+
+Step 4: Connect to Redshift
+"Now, let’s write the Python code to connect to your Redshift cluster. Make sure to replace the placeholder text with your actual Redshift credentials. In a new cell, enter the following code:"
+
+python
+Copy code
+import psycopg2
+
+# Replace these values with your actual Redshift endpoint and credentials
+host = "your-redshift-endpoint"
+dbname = "your-db-name"
+user = "your-username"
+password = "your-password"
+port = "your-port"
+
+# Establishing the connection
+conn = psycopg2.connect(
+    dbname=dbname,
+    user=user,
+    password=password,
+    host=host,
+    port=port
+)
+
+# Creating a cursor object using a context manager
+with conn.cursor() as cursor:
+    cursor.execute("SELECT * FROM your-table LIMIT 5;")
+    records = cursor.fetchall()
+
+# Print the records to verify the connection
+for record in records:
+    print(record)
+"Remember to replace 'your-redshift-endpoint', 'your-db-name', 'your-username', 'your-password', 'your-port', and 'your-table' with your actual Redshift details."
+
+Closing:
+"There you have it! You’ve now connected to your Redshift database using a Jupyter Notebook. You can now proceed to execute queries and analyze your data. For additional guidance or information, explore our detailed user manuals or reach out to the support team."
