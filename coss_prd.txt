@@ -1,0 +1,83 @@
+import pandas as pd
+import numpy as np
+
+def coss_prd(asr, ag, an, s, n, bs, t, p, br, brf, seed=0):
+    np.random.seed(seed)
+
+    if an < 4:
+        raise ValueError("Length of CID number must be at least 4.")
+
+    t = t.split()
+    if not p:
+        p = ['1'] * len(t)
+    else:
+        p = p.split()
+
+    if len(t) != len(p) or len(t) == 0:
+        raise ValueError("Mismatch in treatment regimens or ratios, or no treatment provided.")
+
+    if n < bs:
+        raise ValueError("Total CID number must be no less than blocking factor.")
+
+    grp_no = sum(map(int, p))
+    if bs % grp_no != 0:
+        raise ValueError("Blocking size is not a multiple of sum of treatment regimen ratios.")
+
+    end_no = s + n - 1
+    total = bs * ((n + bs - 1) // bs)
+    blocks = total // bs
+    block_min = int(br)
+    block_max = block_min + blocks - 1
+
+    if len(str(br)) != brf:
+        raise ValueError("Length of Block No# range must match the size given.")
+
+    allocations = []
+
+    if total == bs and bs > 1000:
+        grp_no = bs // grp_no
+        p = [x * grp_no for x in map(int, p)]
+
+        for trt, grp in zip(t, p):
+            for block_no in range(block_min, block_max + 1):
+                group = trt
+                for _ in range(grp):
+                    ran = np.random.uniform()
+                    allocations.append((block_no, ran, group))
+
+        df = pd.DataFrame(allocations, columns=["block_no", "ran", "group"])
+        df.sort_values(by=["block_no", "ran"], inplace=True)
+        df['alloc'] = range(s, s + len(df))
+        df = df[df['alloc'] <= end_no]
+
+    else:
+        grps = np.tile(t, (bs // grp_no, 1)).flatten().tolist()
+
+        for block_no in range(block_min, block_max + 1):
+            for _ in range(bs):
+                ran = np.random.uniform()
+                allocations.append((block_no, ran))
+
+        df = pd.DataFrame(allocations, columns=["block_no", "ran"])
+        df.sort_values(by=["block_no", "ran"], inplace=True)
+        df['group'] = grps * (len(df) // len(grps))
+        df['alloc'] = range(s, s + len(df))
+        df = df[df['alloc'] <= end_no]
+
+    return df
+
+# Usage example, replace the arguments with your actual values
+df = coss_prd(
+    asr="your_asr",
+    ag="your_ag",
+    an=5,
+    s=100,
+    n=2000,
+    bs=100,
+    t="t1 t2 t3",
+    p="1 2 1",
+    br=100,
+    brf=3
+)
+
+print(df)

@@ -1,0 +1,72 @@
+import pandas as pd
+import numpy as np
+
+def cass_prd(ASR, AG, AN, S, N, BS, T, P, BR):
+    errors = []
+
+    if len(AN) < 4:
+        errors.append('Length of CID number must be at least 4.')
+
+    T = T.split()
+    if len(T) == 0:
+        errors.append('There must be at least one treatment regimen.')
+
+    P = list(map(int, P.split())) if P else [1] * len(T)
+
+    if N < BS:
+        errors.append('Total CID number must be no less than blocking factor.')
+
+    GrpNo = sum(P)
+    if BS % GrpNo != 0:
+        errors.append('Blocking size is not a multiple of sum of treatment regimen ratios.')
+
+    if errors:
+        raise ValueError(errors)
+
+    Grps = [t for t, p in zip(T, P) for _ in range(p)]
+
+    np.random.seed(0)  # The seed is set to 0 here
+    alloc = S
+
+    # Using a list comprehension to create a list of DataFrames
+    dfs = [
+        pd.DataFrame({
+            'block_no': [block_no] * BS,
+            'ran': np.random.uniform(size=BS),
+            'alloc': range(alloc + i * BS, alloc + (i + 1) * BS),
+            'group': Grps
+        })
+        for i, block_no in enumerate(range(BR, BR + BS))
+    ]
+
+    # Concatenating the list of DataFrames into one DataFrame
+    df = pd.concat(dfs, ignore_index=True)
+    
+    sch3 = df.copy()
+    sch4 = df.copy()
+
+    formatted_data = {
+        'ASR': [ASR] * len(df),
+        'AG': [AG] * len(df),
+        'lineno': range(1, len(df) + 1),
+        'LINETEXT': df['alloc'].astype(str),
+        'ERRTEXT': [''] * len(df)
+    }
+
+    formatted_df = pd.DataFrame(formatted_data)
+
+    return df, sch3, sch4, formatted_df
+
+# Example of using the function with individual parameters
+try:
+    df, sch3, sch4, formatted_df = cass_prd(
+        ASR='', AG='', AN='1234', S=0, N=10, BS=5, T='T1 T2', P='2 3',
+        BR=0
+    )
+    print("DF:\n", df)
+    print("\nSch3:\n", sch3)
+    print("\nSch4:\n", sch4)
+    print("\nFormatted DF:\n", formatted_df)
+except ValueError as e:
+    print("Errors:")
+    print("\n".join(e.args))
