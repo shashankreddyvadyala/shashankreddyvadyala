@@ -1,12 +1,18 @@
-1) Indicate if you need any self-service tools (such as Cohort Insight, Cohort Visualization, Cohort Comparison, Treatment Pathways, Time on Treatment, etc.) for your analysis.
-2) Indicated if you need any advanced analytics tools (such as SAS, R Studio, and JupyterHub) for your analysis.
-3) If you indicated the need for advanced analytics tools, you will asked to acknowledge that the use of a code repository for the analysis and that all team members have logged into stash.merck.com at least once.
-4) Please add the names of all the people who require access to the Advanced analysis folder.
-5) Confirm that that study contributors have received access to the datasets to be used in this analysis and that if any contributor’s or my access permission expires before the expected end of the analysis, appropriate access extensions will be requested.
-6) Indicate if programming support is needed.Additional programming support is limited to internal support (and vendors who have been trained and onboarded to the platform). Support includes code development and execution and validation. Programming support is provided by BARDS SP-RWE and is only available for CORE Quantitative Scientists.
-If programming support is needed, an additional "Programming" step will be added to the wizard and must be completed. Otherwise you can progress to the Summary page to review and submit your analysis.
-7) Click to return to the previous step.
-8) Proceed to the next step in the wizard. If you any required fields were left empty, they will highlighted and must be completed before proceeding.
+Identify needed self-service tools like Cohort Visualization or Time on Treatment for analysis.
+
+Determine if advanced tools like SAS or JupyterHub are required.
+
+Confirm team's use of code repository and logins at stash.merck.com if advanced tools are needed.
+
+List names of those requiring access to the advanced analysis folder.
+
+Ensure all study contributors have received dataset access and plan for extension if needed.
+
+Decide if internal programming support is required. If so, complete the additional step.
+
+Option to revisit the previous step if needed.
+
+Proceed to next step, ensuring all mandatory fields are completed before moving forward.
 
 
 
