@@ -1,20 +1,7 @@
-Here are a few clarifications and additional information that might be helpful based on the information provided:
-
 1. Prerequisites
-Make sure you have the necessary permissions and access to use GitHub and other tools mentioned. If required, set up SSH keys or personal access tokens for secure authentication.
+Make sure you have the necessary permissions and access to use GitHub and other tools mentioned. If your first time to github it is required, to set up SSH keys or personal access tokens for secure authentication.
+ 
 
-2. Initialization Requirements
-A GitHub repository is automatically created upon the successful creation of the study. Ensure that all relevant team members have access to this repository.
-A SharePoint page can also be used for centralized collaboration and information sharing. Check permissions and accessibility.
-3. Initialization Rationale
-Workspace setup, symbolic links creation, and environment tracking are crucial for reproducibility and collaboration.
-Ensure that the Bitbucket repository is also set up and accessible, as it appears to be a part of the workflow.
-4. Initialization of a Newly Created Analysis
-Follow the detailed steps to initialize the project using the provided initialization script.
-Ensure that R and other required software are installed and configured correctly.
-5. Initializing an Ongoing Analysis
-Follow a similar process for ongoing projects. Make sure all changes are committed and pushed to the repository before migration.
-Ensure all team members are informed and prepared for the migration process.
 
 
 
