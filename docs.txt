@@ -1,83 +1,175 @@
+1. Prerequisites
+Before you begin, ensure you have the following prerequisites in place:
 
-research.
+Request Access to GitHub account follow the steps in the link
+Follow the steps to Setting up the Git (Authentication to use GitHub Enterprise Cloud).
+2. Initialization requirements
+Create an analysis via the Analysis Wizard on RWDEx (see relevant section)
+Select the option “Advanced Analytical Tools enabled” in the Tools and Support form
+Indicate yourself and all the other team members as collaborators
+Once the study is successfully created, chminer should automatically generate a GitHub repository for the project. This repository can be used to store and manage the study materials, code, and documentation. The repository can be accessed by the user and other team members involved in the study.
 
-### Slide 1: Introduction
-- Title: Emphasizing Stata in Medical and Scientific Research
-- Subtitle: A Comparative Overview with Python and R
-- Image: Highlighting Stata logo with Python and R in the background
+Additionally, a SharePoint page can be created to provide a centralized location for storing and collaborating on study-related documents, files, and information. The SharePoint page can be customized to suit the study's specific needs and can be accessed by the user and other team members.
+After the repository and SharePoint page creation, an email notification should be sent to the user. The email should contain details about the study, including links to the GitHub repository and the SharePoint page, as well as any additional information or instructions
+Find the link to the analysis in GitHub repository (example Study repos)
+3. Initialization rationale
+The user will be cloning their analyses via the initialization script which additionally sets up the elements below to ensure reproducibility and ease collaborative workflows:
 
-### Slide 2: Stata Dominance
-- Title: Why Stata Stands Out
-- Bullet Points:
-  - Tailored for Non-Programmers
-  - Industry-Standard in Medical Research
-  - Robust Statistical Analysis Tools
-  - Efficient Data Management
+Automatic set-up of the workspace for each user, comprising of:
+Setting up the analysis folder in the user’s /home directory
+Setting up symbolic links to /input and /output on EFS within this folder
+Adding default files to the Bitbucket repository (explained further in the guide)
+Cloning the Bitbucket repository to the /home folder (the user will no longer git clone their analyses)
+Environment tracking:
+Creation of a dedicated project library
+Tracking and versioning of the package requirement lists
+Environment shareability and reproducibility
+4. Initialization of a newly created analysis
+After reviewing the requirements and understanding the basic rationale behind the proposed workflow, To initialize your analysis and set up the workspace for reproducibility and easy collaboration, please follow these steps:
 
-### Slide 3: Stata Features
-- Title: Stata’s Rich Feature Set
-- Bullet Points:
-  - Intuitive User Interface
-  - Extensive, User-Friendly Documentation
-  - Regular Updates with Cutting-Edge Features
-  - Strong Quality Control Mechanisms
+Open mRemoteNG and connect to the R-Studio server, or open the R-Studio terminal client (see Connect to Advanced Analytic Tools for more info)
+Call the initialization script by executing
 
-### Slide 4: Stata in Medical Research
-- Title: Stata’s Application in Medicine
-- Bullet Points:
-  - Gold Standard in Clinical Trials
-  - Widely Adopted in Epidemiological Studies
-  - Preferred for Health Economics Analysis
-  - Reliable and Trusted by Healthcare Professionals
+$PROJECT_SETUP_TOOLS/init_project.sh
+      3.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
 
-### Slide 5: Python and R
-- Title: A Glimpse at Python and R
-- Bullet Points:
-  - Flexible but Complex
-  - Rich Libraries but Intensive Learning Curve
-  - Vibrant but Fragmented Communities
 
-### Slide 6: Stata vs Python & R
-- Title: Where Stata Shines
-- Bullet Points:
-  - Simplified Data Analysis Workflow
-  - Consistency in Updates and Features
-  - Specialized Support for Medical Research Needs
-  - Less Technical Hurdles for Beginners
 
-### Slide 7: Case Studies
-- Title: Real-World Applications of Stata
-- Bullet Points:
-  - Leading Pharmaceutical Research Projects
-  - Innovative Epidemiological Studies
-  - Breakthroughs in Clinical Trials Methodologies
+    4. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
 
-### Slide 8: Testimonials
-- Title: Voices from the Field
-- Bullet Points:
-  - Quotes from Top Medical Researchers Praising Stata
-  - Statistics of Global Adoption in Medical Institutions
-  - Success Stories of Research Completed using Stata
+    5.Navigate to the GitHub repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
 
-### Slide 9: Making the Right Choice
-- Title: Why Choose Stata?
-- Bullet Points:
-  - Optimized for Medical and Scientific Research
-  - Unparalleled Ease of Use and Efficiency
-  - Committed to Excellence and Innovation in Data Analysis
 
-### Slide 10: Conclusion
-- Title: Stata - The Undisputed Champion in Medical and Scientific Data Analysis
-- Bullet Points:
-  - Unmatched Reliability and Consistency
-  - A Global Community of Satisfied Medical Professionals
-  - The Future of Data Analysis in Healthcare
 
-### Slide 11: Get Started with Stata
-- Title: Embark on Your Stata Journey
-- Bullet Points:
-  - Easy Access to Tutorials and Learning Materials
-  - Join a Global Network of Stata Enthusiasts
-  - Step into a World of Efficient, Robust, and Reliable Data Analysis
+      6. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
 
-These modified slides have a stronger focus on promoting Stata's strengths, especially in the realm of medical and scientific research, while still maintaining an objective comparison with Python and R. Adjust as needed to fit your specific audience and presentation style!
+
+
+Copying the HTTPs link
+
+
+
+Copying the SSH link
+
+
+
+Paste the HTTP link in terminal.
+
+
+
+Paste the SSH link in terminal
+
+
+
+Prompt asking to enter for username for GitHub, use ISID as username.
+
+
+
+
+Prompt asking to enter the password, use the personal token
+
+
+
+
+
+Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
+
+
+
+
+     7.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
+
+
+
+      8.Wait for the completion of the initialization.
+
+
+
+
+
+    9.Navigate to Terminal. Now, you can git add, commit and push your files to remote repository.
+
+
+See section Working on an Initialized Analysis
+
+Note that the initialization should be performed by each team member to set up their local workspace.
+
+5. Initializing an on-going analysis
+In case you have an on-going R study, additional steps should be taken before the initialization:
+
+Notify all analysis collaborators that the study is about to be migrated
+All collaborators need to commit and push all local changes (for all existing branches) to the remote repository
+[Optional] All branches should be merged to master
+Open mRemoteNG and connect to R Studio (see Connect to Advanced Analytic Tools)
+Call the initialization script by executing: 
+$PROJECT_SETUP_TOOLS/init_project.sh
+      6.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
+
+
+
+    7. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
+
+    8.Navigate to the directory where you want to clone the repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
+
+
+
+      9. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
+
+
+
+Copying the HTTPs link
+
+
+
+Copying the SSH link
+
+
+
+Paste the HTTP link in terminal.
+
+
+
+Paste the SSH link in terminal
+
+
+
+Prompt asking to enter for username for GitHub, use ISID as username.
+
+
+
+
+Prompt asking to enter the password, use the personal token
+
+
+
+
+
+Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
+
+
+
+
+     10.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
+
+
+
+      11.Wait for the completion of the initialization.
+
+
+
+
+
+
+
+See section Working on an Initialized Analysis
+
+Note that the initialization should be performed by each team member to set up their local workspace.
+
+6. Troubleshooting
+If a folder in your /home directory with the same name as the analysis already exists, you will be asked if you want to delete it. Confirm by typing “y”. If you would like to keep the existing folder, type “n” and rename it or change its location and rerun the script.
+If you are trying to initialize an analysis with an R version that you have not previously run on R Studio, do so by going to rstudio.rwdex.merck.com and select the relevant version in the upper-right corner of the menu
+
+
+
+
+
