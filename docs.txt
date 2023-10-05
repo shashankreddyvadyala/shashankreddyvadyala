@@ -1,169 +1,20 @@
+Here are a few clarifications and additional information that might be helpful based on the information provided:
+
 1. Prerequisites
-Before you begin, ensure you have the following prerequisites in place:
-
-Request Access to GitHub account follow the steps in the link
-Follow the steps to Setting up the Git (Authentication to use GitHub Enterprise Cloud).
-2. Initialization requirements
-Create an analysis via the Analysis Wizard on RWDEx (see relevant section)
-Select the option “Advanced Analytical Tools enabled” in the Tools and Support form
-Indicate yourself and all the other team members as collaborators
-Once the study is successfully created, chminer should automatically generate a GitHub repository for the project. This repository can be used to store and manage the study materials, code, and documentation. The repository can be accessed by the user and other team members involved in the study.
-
-Additionally, a SharePoint page can be created to provide a centralized location for storing and collaborating on study-related documents, files, and information. The SharePoint page can be customized to suit the study's specific needs and can be accessed by the user and other team members.
-After the repository and SharePoint page creation, an email notification should be sent to the user. The email should contain details about the study, including links to the GitHub repository and the SharePoint page, as well as any additional information or instructions
-Find the link to the analysis in GitHub repository (example Study repos)
-3. Initialization rationale
-The user will be cloning their analyses via the initialization script which additionally sets up the elements below to ensure reproducibility and ease collaborative workflows:
-
-Automatic set-up of the workspace for each user, comprising of:
-Setting up the analysis folder in the user’s /home directory
-Setting up symbolic links to /input and /output on EFS within this folder
-Adding default files to the Bitbucket repository (explained further in the guide)
-Cloning the Bitbucket repository to the /home folder (the user will no longer git clone their analyses)
-Environment tracking:
-Creation of a dedicated project library
-Tracking and versioning of the package requirement lists
-Environment shareability and reproducibility
-4. Initialization of a newly created analysis
-After reviewing the requirements and understanding the basic rationale behind the proposed workflow, To initialize your analysis and set up the workspace for reproducibility and easy collaboration, please follow these steps:
-
-Open mRemoteNG and connect to the R-Studio server, or open the R-Studio terminal client (see Connect to Advanced Analytic Tools for more info)
-Call the initialization script by executing
-
-$PROJECT_SETUP_TOOLS/init_project.sh
-      3.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
-
-
-
-    4. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
-
-    5.Navigate to the GitHub repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
-
-
-
-      6. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
-
-
-
-Copying the HTTPs link
-
-
-
-Copying the SSH link
-
-
-
-Paste the HTTP link in terminal.
-
-
-
-Paste the SSH link in terminal
-
-
-
-Prompt asking to enter for username for GitHub, use ISID as username.
-
-
-
-
-Prompt asking to enter the password, use the personal token
-
-
-
-
-
-Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
-
-
-
-
-     7.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
-
-
-
-      8.Wait for the completion of the initialization.
-
-
-
-
-
-    9.Navigate to Terminal. Now, you can git add, commit and push your files to remote repository.
-
-
-See section Working on an Initialized Analysis
-
-Note that the initialization should be performed by each team member to set up their local workspace.
-
-5. Initializing an on-going analysis
-In case you have an on-going R study, additional steps should be taken before the initialization:
-
-Notify all analysis collaborators that the study is about to be migrated
-All collaborators need to commit and push all local changes (for all existing branches) to the remote repository
-[Optional] All branches should be merged to master
-Open mRemoteNG and connect to R Studio (see Connect to Advanced Analytic Tools)
-Call the initialization script by executing: 
-$PROJECT_SETUP_TOOLS/init_project.sh
-      6.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
-
-
-
-    7. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
-
-    8.Navigate to the directory where you want to clone the repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
-
-
-
-      9. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
-
-
-
-Copying the HTTPs link
-
-
-
-Copying the SSH link
-
-
-
-Paste the HTTP link in terminal.
-
-
-
-Paste the SSH link in terminal
-
-
-
-Prompt asking to enter for username for GitHub, use ISID as username.
-
-
-
-
-Prompt asking to enter the password, use the personal token
-
-
-
-
-
-Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
-
-
-
-
-     10.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
-
-
-
-      11.Wait for the completion of the initialization.
-
-
-
-
-
-
-
-See section Working on an Initialized Analysis
-
-Note that the initialization should be performed by each team member to set up their local workspace.
+Make sure you have the necessary permissions and access to use GitHub and other tools mentioned. If required, set up SSH keys or personal access tokens for secure authentication.
+
+2. Initialization Requirements
+A GitHub repository is automatically created upon the successful creation of the study. Ensure that all relevant team members have access to this repository.
+A SharePoint page can also be used for centralized collaboration and information sharing. Check permissions and accessibility.
+3. Initialization Rationale
+Workspace setup, symbolic links creation, and environment tracking are crucial for reproducibility and collaboration.
+Ensure that the Bitbucket repository is also set up and accessible, as it appears to be a part of the workflow.
+4. Initialization of a Newly Created Analysis
+Follow the detailed steps to initialize the project using the provided initialization script.
+Ensure that R and other required software are installed and configured correctly.
+5. Initializing an Ongoing Analysis
+Follow a similar process for ongoing projects. Make sure all changes are committed and pushed to the repository before migration.
+Ensure all team members are informed and prepared for the migration process.
 
 
 
