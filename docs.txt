@@ -87,3 +87,67 @@ Each slide should be designed with visual elements that are consistent throughou
 
 
 
+
+1.1.1 adhoc/
+Under each analysis there will be several standard folders. The first folder is the adhoc folder. This is used for any adhoc/code/input/outputs that don’t need to be version controlled. Users are free to create subfolders under the adhoc folder as they see fit
+The adhoc folder is to be used only when rest of the subfolder don't meet requirements. If the code in adhoc folder needs to be moved to production, it should be placed in teh code/src folder
+1.1.2 code/ 
+Under each analysis, the second folder is code. There are several characteristics to be noted here:
+
+Code folder is language/tool agnostic. Code written in any language should be placed here
+
+Code folder mirrors a repository in Bitbucket (for detailed information see  SAS, JH or R reproducibility WFs)
+
+All code will be version controlled upon commiting into Bitbucket
+
+Access to the code repository for any additional user (not marked as Contributors in Analysis Wizard) in bitbucket will be granted by the Support Team upon request
+
+Only the Support Team can delete repositories from Bitbucket
+
+This folder on EFS shoud always reflect the latest production version of the code from BitBucket. There is a triangular relationship in between the Local/home workspace, BitBucket, and EFS study folder:
+The local workspace, aka. ~home folder, is used for everyday development
+The BitBucket is to be used as target remote repository for storing the approved code, and represents the single source of truth
+The EFS study folder is to be an access restricted folder where the finalized version of code is stored for reproducibility and archival purposes, and should mirror the latest BitBucket version
+ Detailed Drill down
+1.1.2.1 conf/
+
+Under each code folder, the first folder is the configuration folder. This will contain any configuration or property files that are specific to the code
+1.1.2.2 lib/
+Under each code folder, the second folder is the library folder. This will contain any custom macros that are relevant to the analysis
+1.1.2.3 src/
+Under each code folder, the statistical programming/analysis should occur in the source folder. Users are free to create subfolders under source as they see fit
+Subfolders such as modeling, preprocessing, preparation, extraction, transformation etc. can be created
+1.1.2.4 study_files/
+Any documentation/ study files/SOPs for the analysis should be placed here (eg. protocol, programming specifications, table mockups, icd/ndc/cpt code lists, etcl). Since the 1.1.2 code folder is a repository in bitbucket, the study files will be version controlled once checked into bitbucket. Users are free to create subfolders under study files as they see fitt
+1.1.2.5 utility/
+Under each code folder, the last folder is the utilities folder. This will contain any common procedures that are relevant to the analysis
+1.1.3 input/
+The third folder under each analysis is the input folder. All inputs files that are required for the analysis should be placed here
+Users are free to create additional folders under the input folder aside from the standardized structure defined
+ Detailed Drill down
+1.1.3.1 data_raw/
+Under each input folder, the first folder is the data raw folder. All preliminary/raw input datasets should be placed here
+Datasets that are extracted from databases should be placed here
+1.1.3.2 data_processed/
+Under each input folder, the second folder is the data processed folder. All intermediary input datasets should be placed here.
+Datasets that are outputs from code and are inputs to successive code should be placed here
+1.1.3.3 ref/
+Under each input folder, the third folder is the reference folder. Any lookup files, data dictionaries, ICD9/10/NDC codes or other reference material can be placed in this folder. Note: The source/raw version of icd/ndc/cpt codes is considered part of the analysis specifications and needs to be saved in the code repository/bitbucket so it is stored in /study_files often in excel format. The converted SAS/R version to be used in programs is stored here in /ref
+1.1.4 output/
+The fourth folder under each analysis is the output folder. All output files that are created for the analysis should be placed here.
+Users are free to create additional folders under the output folder aside from the standardized structure defined
+ Detailed Drill down
+1.1.4.1 out_data/
+Under each output folder, the first folder is the out data folder. All proprietary datasets such as .sas datasets that are generated from the code should be placed here
+1.1.4.2 out_graphics/
+Under each output folder, the second folder is the out graphics folder. All graphics or visualizations that are generated from the code should be placed here
+1.1.4.3 out_logs/
+Under each output folder, the third folder is the out logs folder. All logs that are generated from executing the code should be placed in this folder
+1.1.4.4 out_lst/
+Under each output folder, the fourth folder is the out lst folder. All data list files that are generated from the code should be placed here
+1.1.4.5 out_tables/
+Under each output folder, the last folder is the out tables folder. All exportable datasets (such as excel, csv, pdf files) that are generated from the analysis should be placed in this folder
+
+
+
+
