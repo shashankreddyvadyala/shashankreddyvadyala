@@ -1,175 +1,116 @@
-1. Prerequisites
-Before you begin, ensure you have the following prerequisites in place:
-
-Request Access to GitHub account follow the steps in the link
-Follow the steps to Setting up the Git (Authentication to use GitHub Enterprise Cloud).
-2. Initialization requirements
-Create an analysis via the Analysis Wizard on RWDEx (see relevant section)
-Select the option “Advanced Analytical Tools enabled” in the Tools and Support form
-Indicate yourself and all the other team members as collaborators
-Once the study is successfully created, chminer should automatically generate a GitHub repository for the project. This repository can be used to store and manage the study materials, code, and documentation. The repository can be accessed by the user and other team members involved in the study.
-
-Additionally, a SharePoint page can be created to provide a centralized location for storing and collaborating on study-related documents, files, and information. The SharePoint page can be customized to suit the study's specific needs and can be accessed by the user and other team members.
-After the repository and SharePoint page creation, an email notification should be sent to the user. The email should contain details about the study, including links to the GitHub repository and the SharePoint page, as well as any additional information or instructions
-Find the link to the analysis in GitHub repository (example Study repos)
-3. Initialization rationale
-The user will be cloning their analyses via the initialization script which additionally sets up the elements below to ensure reproducibility and ease collaborative workflows:
-
-Automatic set-up of the workspace for each user, comprising of:
-Setting up the analysis folder in the user’s /home directory
-Setting up symbolic links to /input and /output on EFS within this folder
-Adding default files to the Bitbucket repository (explained further in the guide)
-Cloning the Bitbucket repository to the /home folder (the user will no longer git clone their analyses)
-Environment tracking:
-Creation of a dedicated project library
-Tracking and versioning of the package requirement lists
-Environment shareability and reproducibility
-4. Initialization of a newly created analysis
-After reviewing the requirements and understanding the basic rationale behind the proposed workflow, To initialize your analysis and set up the workspace for reproducibility and easy collaboration, please follow these steps:
-
-Open mRemoteNG and connect to the R-Studio server, or open the R-Studio terminal client (see Connect to Advanced Analytic Tools for more info)
-Call the initialization script by executing
-
-$PROJECT_SETUP_TOOLS/init_project.sh
-      3.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
-
-
-
-    4. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
-
-    5.Navigate to the GitHub repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
-
-
-
-      6. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
-
-
-
-Copying the HTTPs link
-
-
-
-Copying the SSH link
-
-
-
-Paste the HTTP link in terminal.
-
-
-
-Paste the SSH link in terminal
-
-
-
-Prompt asking to enter for username for GitHub, use ISID as username.
-
-
-
-
-Prompt asking to enter the password, use the personal token
-
-
-
-
-
-Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
-
-
-
-
-     7.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
-
-
-
-      8.Wait for the completion of the initialization.
-
-
-
-
-
-    9.Navigate to Terminal. Now, you can git add, commit and push your files to remote repository.
-
-
-See section Working on an Initialized Analysis
-
-Note that the initialization should be performed by each team member to set up their local workspace.
-
-5. Initializing an on-going analysis
-In case you have an on-going R study, additional steps should be taken before the initialization:
-
-Notify all analysis collaborators that the study is about to be migrated
-All collaborators need to commit and push all local changes (for all existing branches) to the remote repository
-[Optional] All branches should be merged to master
-Open mRemoteNG and connect to R Studio (see Connect to Advanced Analytic Tools)
-Call the initialization script by executing: 
-$PROJECT_SETUP_TOOLS/init_project.sh
-      6.A prompt asking for the enter link to repository corresponding to the study (GitHub link) will be shown.
-
-
-
-    7. If you have not used Github before, Follow the steps to Setting up the Git(Authentication to use GitHub Enterprise Cloud).
-
-    8.Navigate to the directory where you want to clone the repository and copy either the HTTP or SSH based user GitHub set up mentioned in step 4.
-
-
-
-      9. Input either the HTTP or SSH in terminal. Follow the below steps based on HTTPS or SSH
-
-
-
-Copying the HTTPs link
-
-
-
-Copying the SSH link
-
-
-
-Paste the HTTP link in terminal.
-
-
-
-Paste the SSH link in terminal
-
-
-
-Prompt asking to enter for username for GitHub, use ISID as username.
-
-
-
-
-Prompt asking to enter the password, use the personal token
-
-
-
-
-
-Setup for personal token in shown in following link(Authentication to use GitHub Enterprise Cloud)
-
-
-
-
-     10.A prompt asking for the preferred R version will be shown. Use the format “3.x.x”. Submitting the version in the format “4.x” will show all available R versions that match the input and a  prompt asking for a more specific version appears.
-
-
-
-      11.Wait for the completion of the initialization.
-
-
-
-
-
-
-
-See section Working on an Initialized Analysis
-
-Note that the initialization should be performed by each team member to set up their local workspace.
-
-6. Troubleshooting
-If a folder in your /home directory with the same name as the analysis already exists, you will be asked if you want to delete it. Confirm by typing “y”. If you would like to keep the existing folder, type “n” and rename it or change its location and rerun the script.
-If you are trying to initialize an analysis with an R version that you have not previously run on R Studio, do so by going to rstudio.rwdex.merck.com and select the relevant version in the upper-right corner of the menu
-
-
-
-
-
+Slide 1: Title Slide
+Title: Overview of Analytics Workflow
+Sub-Title: Integrating EFS & Bitbucket in Advanced Analytics
+
+Slide 2: Analysis Initiation
+Analysis with advanced analytics initiates Bitbucket code repository and EFS folder.
+Automatic access for users associated with the study.
+Slide 3: EFS Folder Structure & Naming
+Organized by Therapeutic Area and Analysis.
+Every subfolder identified by RWDEx generated Analysis number.
+Adheres to GxP storage guidelines.
+Slide 4: EFS Folder Hierarchy
+Details of folder hierarchy from Therapeutic Area to specific folders like adhoc, code, input, and output.
+Slide 5: RWE Collaborative Code Hub
+Serves as a code library.
+"Inprogress" folder for developmental code.
+Validated code moves to Bitbucket’s master branch.
+Slide 6: Levels of Code Validation
+Explanation of Jobaid, Knowledgelib, and Macrolib folders and their distinct testing and validation levels.
+Slide 7: Bitbucket Structure & Access
+Mirrors EFS structure for consistency.
+Access control procedures and options.
+Slide 8: Development Process
+Utilizes specific directory structure for analysis.
+Code references shared directories, ensuring reproducibility.
+Bitbucket holds the most current version of the code.
+Slide 9: Modifying EFS & Repository
+Procedures for name changes and access modifications.
+Specifies the parameters that can be changed.
+Slide 10: Conclusion
+Recap of the integration of EFS and Bitbucket in the advanced analytics workflow.
+Emphasis on data integrity, reproducibility, and GxP compliance.
+You can easily copy each of these slide outlines into individual PowerPoint slides and add any additional images or visual aids to make the content more engaging. Each point should be concise and clear to ensure the audience can easily follow along. Add details or examples as needed for clarification.
+
+
+
+
+User
+Make moe detailed
+ChatGPT
+
+4 / 4
+
+Certainly! I'll provide a more detailed outline for each slide.
+
+Slide 1: Title Slide
+Title: Advanced Analytics Workflow
+Subtitle: Integration and Management of EFS & Bitbucket
+
+Image: Icons representing EFS, Bitbucket, and analytics process.
+Slide 2: Analysis Initiation
+Title: Starting the Analysis
+
+Point 1: Creation of Bitbucket repository & EFS folder upon initiation.
+Point 2: Users linked with studies gain automatic access.
+Image: Flow diagram of initiation process.
+Slide 3: EFS Folder Structure & Naming
+Title: Organizational Structure
+
+Point 1: Folders organized by Therapeutic Area and Analysis number.
+Point 2: GxP guidelines adherence in all Analyses.
+Image: Sample folder structure diagram.
+Slide 4: EFS Folder Hierarchy
+Title: In-depth into Folder Hierarchy
+
+Point 1: Therapeutic Area -> Specific Analysis.
+Point 2: Specialized folders like 'adhoc', 'code', 'input', 'output' explained.
+Image: Hierarchical diagram for folder structure.
+Slide 5: RWE Collaborative Code Hub
+Title: The Code Library
+
+Point 1: Explanation of the “inprogress” developmental area.
+Point 2: Procedure of code validation and promotion to Bitbucket’s master branch.
+Image: Screenshots of code hub interface.
+Slide 6: Levels of Code Validation
+Title: Testing and Validation Categories
+
+Point 1: Introduction of Jobaid, Knowledgelib, and Macrolib folders.
+Point 2: Explanation of the distinct testing and validation stages.
+Image: Comparative table of validation levels.
+Slide 7: Bitbucket Structure & Access
+Title: Repository Management
+
+Point 1: Bitbucket's structure echoing EFS for coherence.
+Point 2: Procedure for access control and management.
+Image: Bitbucket interface screenshot, highlighting access controls.
+Slide 8: Development Process
+Title: Code Development Workflow
+
+Point 1: Utilization of a specific, pre-defined directory structure.
+Point 2: Emphasis on code reproducibility and version control via Bitbucket.
+Image: Flowchart of the code development, testing, and deployment process.
+Slide 9: Modifying EFS & Repository
+Title: Modification Protocols
+
+Point 1: Detailed process for requesting folder name changes and access modifications.
+Point 2: Explanation of the specific parameters that can be altered.
+Image: Sample support ticket for modification requests.
+Slide 10: Security and Compliance
+Title: Ensuring Integrity and Security
+
+Point 1: Emphasis on strict adherence to GxP guidelines.
+Point 2: Security protocols for data and code access.
+Image: Icons representing security and compliance.
+Slide 11: Conclusion & Best Practices
+Title: Wrapping Up
+
+Point 1: Summary of key points on EFS & Bitbucket integration in analytics.
+Point 2: Best practices reminder for data integrity, reproducibility, and compliance.
+Image: Recap infographic highlighting key takeaways.
+Slide 12: Questions & Discussion
+Title: Let’s Talk!
+
+Instruction: Open floor for audience questions and discussions.
+Image: Interactive, engaging graphic inviting participation.
+For each slide, consider adding visual elements that are consistent and thematic to make the presentation visually appealing. Make use of bullet points, consistent fonts, and colors to ensure readability and engagement. Each slide should focus on one key topic to avoid overwhelming the audience with information.
