@@ -1,14 +1,27 @@
-{
-    "pat_key": 679141229,
-    "specimen_key": 51087905,
-    "collection_datetime": "2009-05-24 18:00:00",
-    "result_organism": "Serratia marcescens",
-    "susc_test_method_code": null,
-    "susc_test_method_desc": "MIC",
-    "susc_test_method_code_type": "Non-Standard",
-    "medication": "ceftriaxone",
-    "susc_test_result_datetime": "2009-05-27 12:29:00",
-    "susc_test_result": ">=8",
-    "interpretation": "R",
-    "data_source_ind": 3
-}
+import pandas as pd
+
+# Assuming an Excel file named 'multiple_sheets.xlsx' exists in the current directory
+
+# 1. Reading from Multiple Sheets
+# Reading all sheets into a dictionary of DataFrames
+excel_file_path = 'multiple_sheets.xlsx'
+all_sheets_dict = pd.read_excel(excel_file_path, sheet_name=None)
+
+# 2. Data Manipulation Example
+# This part depends on your specific data and needs.
+# As an example, let's just add a new column to each DataFrame that is read.
+for sheet_name, df in all_sheets_dict.items():
+    # Adding a new column with manipulated data. Here, just duplicating the index as an example.
+    df['NewColumn'] = df.index * 2  # Replace this with your actual data manipulation
+    all_sheets_dict[sheet_name] = df  # Storing the modified DataFrame back in the dictionary
+
+# 3. Writing to Multiple Sheets in a New Excel File
+# Define the path for the new Excel file
+output_excel_file = 'modified_multiple_sheets.xlsx'
+
+# Using ExcelWriter to write back to a new Excel file
+with pd.ExcelWriter(output_excel_file, engine='openpyxl') as writer:
+    for sheet_name, df in all_sheets_dict.items():
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+print("Data manipulation complete and written to 'modified_multiple_sheets.xlsx'")
