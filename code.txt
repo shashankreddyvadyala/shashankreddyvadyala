@@ -1,27 +1,14 @@
-import pandas as pd
-import os
-
-def excel_to_json(excel_file_path, output_folder):
-    # Load the Excel file
-    xls = pd.ExcelFile(excel_file_path)
-    
-    # Create output folder if it doesn't exist
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
-    # Convert each sheet to a JSON file
-    for sheet_name in xls.sheet_names:
-        # Read the sheet into a DataFrame
-        df = pd.read_excel(xls, sheet_name=sheet_name)
-        
-        # Generate JSON file path
-        json_file_path = os.path.join(output_folder, f"{sheet_name}.json")
-        
-        # Convert the DataFrame to JSON and save it
-        df.to_json(json_file_path, orient='records', lines=True)
-
-# Example usage:
-# Provide the path to your Excel file and the directory where you want the JSON files to be saved
-excel_file_path = 'path_to_your_excel_file.xlsx'
-output_folder = 'path_to_output_json_files'
-excel_to_json(excel_file_path, output_folder)
+{
+    "pat_key": 679141229,
+    "specimen_key": 51087905,
+    "collection_datetime": "2009-05-24 18:00:00",
+    "result_organism": "Serratia marcescens",
+    "susc_test_method_code": null,
+    "susc_test_method_desc": "MIC",
+    "susc_test_method_code_type": "Non-Standard",
+    "medication": "ceftriaxone",
+    "susc_test_result_datetime": "2009-05-27 12:29:00",
+    "susc_test_result": ">=8",
+    "interpretation": "R",
+    "data_source_ind": 3
+}
